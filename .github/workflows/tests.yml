@@ -19,3 +19,5 @@ jobs:
         run: npm ci
       - name: Запуск unit-тестов
         run: npm test
+      - name: Создание папки для базы данных
+        run: mkdir -p database

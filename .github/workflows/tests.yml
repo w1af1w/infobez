@@ -17,7 +17,7 @@ jobs:
           cache: npm
       - name: Установка зависимостей
         run: npm ci
-      - name: Запуск unit-тестов
-        run: npm test
       - name: Создание папки для базы данных
         run: mkdir -p database
+      - name: Запуск unit-тестов
+        run: npm test

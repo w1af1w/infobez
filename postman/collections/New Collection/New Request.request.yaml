@@ -1,0 +1,15 @@
+$kind: http-request
+url: http://localhost/metodichkawebservice/hs/Exchange/clients/000000005
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Романов Роман\"\r
+
+    }"
+auth:
+  type: basic
+  credentials:
+    username: Администратор
+order: 1000

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-box">
+        <h2>Личный кабинет</h2>
+        <div id="profileData" style="display: none;">
+            <p style="margin-bottom: 20px;">
+                Вы вошли как:<br>
+                <strong id="userLogin" style="font-size: 18px; color: #333;"></strong>
+            </p>
+            <button id="logoutBtn">Выйти</button>
+        </div>
+        <div id="loading" style="color: #777; margin: 20px 0;">
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

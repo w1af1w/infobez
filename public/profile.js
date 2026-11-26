@@ -74,4 +74,25 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
         window.location.href = '/index.html';
     }
 });
-loadProfile();
+document.getElementById('activityBtn').addEventListener('click', async () => {
+    const response = await fetchWithAuth('/profile');
+    if (response && response.ok) {
+        console.log('Активность продлена на 1 минуту');
+    }
+});
+function startTokenTimer() {
+    const timer = setInterval(() => {
+        const token = getAccessToken();
+        if (!token) {
+            clearInterval(timer);
+            return;
+        }
+        const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+        const remaining = payload.exp - Math.floor(Date.now() / 1000);
+        if (remaining <= 0) {
+            clearInterval(timer);
+            handleSessionExpired();
+        }
+    }, 1000);
+}
+loadProfile().then(() => startTokenTimer());

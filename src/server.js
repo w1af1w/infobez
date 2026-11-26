@@ -37,7 +37,7 @@ const authenticateToken = createAuthMiddleware(db);
 const MAX_ATTEMPTS = 3;
 const BLOCK_TIME = 60 * 1000;
 const SESSION_LIFETIME = 8 * 60 * 60 * 1000; // 8 часов
-const INACTIVITY_LIFETIME = 15 * 60 * 1000; // 15 минут
+const INACTIVITY_LIFETIME = 1 * 60 * 1000; // 15 минут
 const ARGON2_OPTIONS = {
     type: argon2.argon2id,
     memoryCost: 19456,
@@ -168,7 +168,7 @@ app.post('/refresh', (req, res) => {
     }
     const { token: newRefreshToken, hash: newHash } = generateRefreshToken();
     const newAccessToken = createAccessToken(session.user_id);
-    db.prepare(`UPDATE sessions SET refresh_token_hash = ?, last_activity = ? WHERE id = ?`).run(newHash, now, session.id);
+    db.prepare(`UPDATE sessions SET refresh_token_hash = ? WHERE id = ?`).run(newHash, session.id);
     res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',

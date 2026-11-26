@@ -21,7 +21,7 @@ function createAuthMiddleware(db) {
             if (!session) {
                 return res.status(401).json({ message: 'Сессия истекла' });
             }
-            const INACTIVITY_LIFETIME = 15 * 60 * 1000;
+            const INACTIVITY_LIFETIME = 1 * 60 * 1000;
             if (Date.now() - session.last_activity > INACTIVITY_LIFETIME) {
                 return res.status(401).json({ message: 'Сессия истекла из-за бездействия' });
             }

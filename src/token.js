@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const JWT_SECRET = process.env.JWT_SECRET;
-const ACCESS_TOKEN_LIFETIME = '15m';
+const ACCESS_TOKEN_LIFETIME = '20s';
 const activeAccessTokens = new Map();
 function generateRefreshToken() {
     const token = crypto.randomBytes(40).toString('hex');
